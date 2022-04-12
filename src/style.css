@@ -1,9 +1,11 @@
+:root { --primary: #f3e5e5; }
+
 body {
-  background-color: #f3e5e5;
+  background-color: var(--primary);
 }
 
 header {
-  background-image: url(../Assets/logo.jpg);
+  background-image: url(../assets/logo.jpg);
   background-repeat: no-repeat;
   background-position: 10% 50%;
   background-size: 50px;
