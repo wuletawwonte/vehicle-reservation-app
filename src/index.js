@@ -1,4 +1,4 @@
 import './style.css';
-import {loadVehicles} from './modules/displaycars.js';
+import loadVehicles from './modules/displaycars.js';
 
 window.onload = loadVehicles();
