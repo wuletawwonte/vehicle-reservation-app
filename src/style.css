@@ -1,3 +1,31 @@
 body {
-  background-color: bisque;
+  background-color: #f3e5e5;
+}
+
+header {
+  background-image: url(../Assets/logo.jpg);
+  background-repeat: no-repeat;
+  background-position: 10% 50%;
+  background-size: 50px;
+  background-color: white;
+  padding: 1px 0;
+  width: 100%;
+}
+
+.header {
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+}
+
+.header li {
+  list-style-type: none;
+  margin-right: 100px;
+}
+
+li a {
+  color: #03038a;
+  text-decoration: none;
+  font-size: 36px;
 }
