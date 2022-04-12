@@ -4,7 +4,7 @@ const carsContainer = document.getElementById('vehicles-container');
 
 const loadVehicles = async() => {
   let data = await getCars();
-  carsContainer.innerHTML = data.map(car => `      <div class="v-item">
+  carsContainer.innerHTML = data.slice(0,10).map(car => `      <div class="v-item">
   <img src="${car.img_url}" alt="${car.model}">
   <div>
     <h2>${car.make}</h2>
