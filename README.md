@@ -1,6 +1,6 @@
 # vehicle-reservation-app
 
-> Vehicle Reservation application is a simple application being built with vehivle information with the features listed below.
+> Vehicle Reservation application is a simple web application being built to track vehicle information and has the features listed below.
 
 Our goal here is to Build a Vehivle reservation application with add and remove feature from scratch using JavaScript. click [here](#) to see deployed live version
 
