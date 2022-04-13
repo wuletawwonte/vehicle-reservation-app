@@ -1,6 +1,7 @@
 import getCars from './apicalls.js';
+import displayCommentPopup from '../comments/commentPopup.js';
 
-const carsContainer = document.getElementById('vehicles-container');
+const carsContainer = document.getElementById('popup-container');
 
 const loadVehicles = async () => {
   const data = await getCars();
@@ -11,11 +12,15 @@ const loadVehicles = async () => {
     <p>3 Likes</p>
   </div>
   <div>
-    <button type="button">Comments</button>
+    <button type="button" class="buttons" id = "${car.id}">Comments</button>
     <button type="button">Reservations</button>
   </div>
 </div>
 `).join('');
+  const button = document.querySelectorAll('.buttons');
+  button.forEach((car) => {
+    car.onclick = () => displayCommentPopup(data.find((d) => d.id.toString() === car.id));
+  });
 };
 
 export default loadVehicles;
