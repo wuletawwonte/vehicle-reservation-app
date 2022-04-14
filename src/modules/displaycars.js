@@ -15,8 +15,8 @@ const loadVehicles = async () => {
       <img src="${imgUrl}" alt="${model}">
       <div>
         <h2>${make}</h2>
-        <button type="button" class="btn like-btn" id="${id}">Like</button> 
-        <p class="likes-count" data-car-id="${id}"></p>
+        <button type="button" class="btn like-btn" data-car-id="${id}">Like</button> 
+        <p class="likes-count" data-car-id="${id}" id=${id}></p>
       </div>
       <div>
         <button type="button" class="buttons" id = "${id}">Comments</button>
@@ -25,6 +25,7 @@ const loadVehicles = async () => {
     </div>
     `;
   }).join('');
+
   const button = document.querySelectorAll('.buttons');
   button.forEach((car) => {
     car.onclick = () => displayCommentPopup(data.find((d) => d.id.toString() === car.id));
@@ -36,8 +37,19 @@ const loadVehicles = async () => {
     const { carId } = item.dataset;
     allLikes.forEach((likeItem) => {
       if (likeItem.item_id === carId) {
-        item.innerHTML = `${likeItem.likes} Likes`;
+        item.innerHTML = `${likeItem.likes} ${likeItem.likes === 1 ? 'Like' : 'Likes'}`;
       }
+    });
+  });
+
+  const likeButtons = document.querySelectorAll('.like-btn');
+
+  likeButtons.forEach((likeBtn) => {
+    likeBtn.addEventListener('click', async (e) => {
+      const { carId } = e.target.dataset;
+      const likeCount = await likes.like(carId);
+      const likeCountContainer = document.getElementById(carId);
+      likeCountContainer.innerHTML = `${likeCount} ${likeCount === 1 ? 'Like' : 'Likes'}`;
     });
   });
 };
