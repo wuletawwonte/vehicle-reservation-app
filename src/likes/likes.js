@@ -21,11 +21,10 @@ class Likes {
       },
       body: JSON.stringify(likedCar),
     });
-    const allLikes = await this.getAll(); 
-    const { likes } = allLikes.find(item => item.item_id === carId);
+    const allLikes = await this.getAll();
+    const { likes } = allLikes.find((item) => item.item_id === carId);
     return likes;
   };
-
 }
 
 export default Likes;

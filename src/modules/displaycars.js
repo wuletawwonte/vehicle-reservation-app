@@ -44,15 +44,14 @@ const loadVehicles = async () => {
 
   const likeButtons = document.querySelectorAll('.like-btn');
 
-  likeButtons.forEach(likeBtn => {
-    likeBtn.addEventListener('click', async(e) => {
+  likeButtons.forEach((likeBtn) => {
+    likeBtn.addEventListener('click', async (e) => {
       const { carId } = e.target.dataset;
       const likeCount = await likes.like(carId);
       const likeCountContainer = document.getElementById(carId);
       likeCountContainer.innerHTML = `${likeCount} ${likeCount === 1 ? 'Like' : 'Likes'}`;
-    })
-  }) 
-
+    });
+  });
 };
 
 export default loadVehicles;
