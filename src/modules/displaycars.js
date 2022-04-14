@@ -9,6 +9,7 @@ const loadVehicles = async () => {
   <img src="${car.img_url}" alt="${car.model}">
   <div>
     <h2>${car.make}</h2>
+    <button type="button" class="btn like-btn" id="${car.id}">Like</button> 
     <p>3 Likes</p>
   </div>
   <div>
