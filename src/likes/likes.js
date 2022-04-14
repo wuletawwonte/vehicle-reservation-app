@@ -5,15 +5,15 @@ class Likes {
   }
 
   getAll = async () => {
-      const response = await fetch(this.likesUrl);
-      const allLikes = response.json();
-      return allLikes;
-    };
+    const response = await fetch(this.likesUrl);
+    const allLikes = response.json();
+    return allLikes;
+  };
 
   like = async (carId) => {
     const likedCar = {
-        "item_id": carId
-      }    
+      item_id: carId,
+    };
     await fetch(this.likesUrl, {
       method: 'POST',
       headers: {
@@ -22,7 +22,6 @@ class Likes {
       body: JSON.stringify(likedCar),
     });
   };
-
 }
 
 export default Likes;
