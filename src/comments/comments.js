@@ -1,47 +1,60 @@
-class Api {
-  constructor(
-    involvementApi = 'https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/',
-  ) {
-    this.carId = 'K2k68wPBsTKAT68ziNEu';
-    this.root = involvementApi;
-    this.comments = `${involvementApi}${this.carId}/comments`;
-  }
+import Api from './addComments.js'
 
-    getComment = async (
-      root = this.comments,
-      id,
-    ) => {
-      try {
-        const url = `${root}?item_id=${id}`;
-        const response = await fetch(url, {
-          method: 'GET',
-          headers: {
-            'Content-Type': 'application/json',
-          },
+class CommentData {
+    constructor(username, comment, id) {
+        this.username = username;
+        this.comment = comment;
+        this.item_id = id;
+    }
+}
+const renderComment = (comment) => `<li class="text-lg">
+        <span>${comment.creation_date}</span> -
+        <span class="text-slate-600 mx-2">${comment.username} : </span>
+        <span>${comment.comment}</span>
+      </li>`;
+const displayComment = (id) => {
+    const api = new Api();
+    let data = [];
+    api
+        .getComment(undefined, id)
+        .then((commentData) => {
+            data = commentData;
+            const CommentContainer = document.querySelector('.comment-container');
+            if (data.length > 0) {
+                let containerString = '';
+                data.forEach((dataItem) => {
+                    console.log(dataItem)
+                    containerString += `${renderComment(dataItem)} \n`;
+                });
+
+                CommentContainer.innerHTML = containerString;
+            } else {
+                CommentContainer.innerHTML = '';
+            }
+        })
+        .catch((commentData) => {
+            data = commentData;
         });
 
-        return response.json();
-      } catch (error) {
-        return [];
-      }
-    };
+};
+const createComment = () => {
+    const api = new Api();
+    const form = document.getElementById('comment-form');
+    const comBtn = document.querySelector('.comment-button');
+    const id = Number(comBtn.id.split('-')[2]);
+    const usernameInput = document.querySelector('.input');
+    const commentInput = document.querySelector('.comment');
 
-    addComment = async (
-      url = this.comments,
-      bodyData,
-    ) => {
-      await fetch(url, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(bodyData),
-      });
-    };
+    const username = usernameInput.value;
+    const comment = commentInput.value;
+    const commentObj = new CommentData(username, comment, id);
 
-    addComment = (bodyData) => this.addComment(this.comments, bodyData);
-
-    getComment = (id) => this.getComment(this.comments, id);
+    api
+        .addComment(commentObj)
+        .then(() => api.getComment(undefined, id))
+        .then(() => {
+            displayComment(id);
+        });
+    form.reset();
 }
-
-export default Api;
+export default createComment;
