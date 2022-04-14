@@ -1,4 +1,4 @@
-const url = 'https://private-fa07cd-carsapi1.apiary-mock.com/cars';
+const url = 'https://vehicle-reservation-api.herokuapp.com/vehicle';
 
 const getCars = async () => {
   const response = await fetch(url);
