@@ -59,6 +59,6 @@ const loadVehicles = async () => {
 const loadCarCount = async () => {
   const count = await cars.count();
   carsCount.innerHTML = `(${count})`;
-}
+};
 
-export {loadVehicles, loadCarCount};
+export { loadVehicles, loadCarCount };
