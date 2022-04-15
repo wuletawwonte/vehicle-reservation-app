@@ -19,9 +19,9 @@ const loadVehicles = async () => {
     } = car;
     return `<div class="column">
       <img src="${imgUrl}" alt="${model}" class="image">
+      <i class="fa fa-heart like-btn" data-carid="${id}"></i>
       <div class="title">
         <h2>${make}</h2>
-        <button type="button" class="btn like-btn" data-car-id="${id}">Like</button> 
         <p class="likes-count" data-car-id="${id}" id=${id}></p>
       </div>
       <div class="btn">
@@ -62,9 +62,9 @@ const loadVehicles = async () => {
 
   likeButtons.forEach((likeBtn) => {
     likeBtn.addEventListener('click', async (e) => {
-      const { carId } = e.target.dataset;
-      const likeCount = await likes.like(carId);
-      const likeCountContainer = document.getElementById(carId);
+      const { carid } = e.target.dataset;
+      const likeCount = await likes.like(carid);
+      const likeCountContainer = document.getElementById(carid);
       likeCountContainer.innerHTML = `${likeCount} ${likeCount === 1 ? 'Like' : 'Likes'}`;
     });
   });
