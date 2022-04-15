@@ -15,6 +15,10 @@ body {
   margin: 0;
 }
 
+#popup-container {
+  display: block;
+}
+
 header {
   background-image: url(./assets/logo.jpg);
   background-repeat: no-repeat;
@@ -32,9 +36,14 @@ header {
   align-items: center;
 }
 
+li {
+  list-style-type: none;
+}
+
 .header li {
   list-style-type: none;
-  margin-right: 100px;
+  margin-right: 10px;
+  font-size: 16px;
 }
 
 li a {
@@ -142,6 +151,7 @@ h2 {
 }
 
 .comments,
+.reserve,
 .add {
   width: 80%;
   border: 2px solid var(--border);
@@ -149,7 +159,8 @@ h2 {
   padding: 10px 30px;
 }
 
-#comment-form {
+#comment-form,
+#reserve-form {
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -165,9 +176,11 @@ textarea {
   border: 1px solid  var(--input);
   border-radius: 10px;
   height: 100px;
+  padding: 10px;
 }
 
-#comment-form button {
+#comment-form button,
+#reserve-form button {
   background-color: var(--input);
   color: white;
   border: none;
@@ -177,15 +190,23 @@ textarea {
   width: 40%;
 }
 
+footer {
+  background-color: white;
+  text-align: center;
+  font-weight: bold;
+  font-size: 24px;
+  padding: 1px 0;
+  margin-top: 20px;
+}
+
 @media screen and (min-width: 600px) {
   .column {
     width: 40%;
     margin: 10px 0 0 50px;
   }
 
-  .comments,
-  .add {
-    width: 40%;
+  .header li {
+    margin-right: 50px;
   }
 }
 
@@ -193,5 +214,15 @@ textarea {
   .column {
     width: 25%;
     margin: 50px 0 0 100px;
+  }
+
+  .header li {
+    margin-right: 100px;
+  }
+
+  .comments,
+  .reserve,
+  .add {
+    width: 40%;
   }
 }
