@@ -17,6 +17,7 @@
   "license": "ISC",
   "devDependencies": {
     "@babel/plugin-transform-modules-commonjs": "^7.17.7",
+    "@jest/globals": "^27.5.1",
     "babel-eslint": "^10.1.0",
     "css-loader": "^6.7.1",
     "eslint": "^7.32.0",
