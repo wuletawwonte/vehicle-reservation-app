@@ -1,13 +1,15 @@
 import Likes from '../likes/likes.js';
-import getCars from './apicalls.js';
+import Cars from './cars.js';
 import displayCommentPopup from '../comments/commentPopup.js';
 import { displayComment } from '../comments/comments.js';
 
 const carsContainer = document.getElementById('popup-container');
+const carsCount = document.getElementById('vehicle-count');
 const likes = new Likes();
+const cars = new Cars();
 
 const loadVehicles = async () => {
-  const data = await getCars();
+  const data = await cars.getAll();
   carsContainer.innerHTML = data.slice(0, 6).map((car) => {
     const {
       img_url: imgUrl,
@@ -68,4 +70,9 @@ const loadVehicles = async () => {
   });
 };
 
-export default loadVehicles;
+const loadCarCount = async () => {
+  const count = await cars.count();
+  carsCount.innerHTML = `(${count})`;
+};
+
+export { loadVehicles, loadCarCount };
