@@ -1,21 +1,21 @@
 import Likes from '../likes/likes.js';
 import getCars from './apicalls.js';
 import displayCommentPopup from '../comments/commentPopup.js';
-import { displayComment } from '../comments/comments.js'
+import { displayComment } from '../comments/comments.js';
 
 const carsContainer = document.getElementById('popup-container');
 const likes = new Likes();
 
-const loadVehicles = async() => {
-    const data = await getCars();
-    carsContainer.innerHTML = data.slice(0, 6).map((car) => {
-        const {
-            img_url: imgUrl,
-            model,
-            make,
-            _id: id,
-        } = car;
-        return `<div class="column">
+const loadVehicles = async () => {
+  const data = await getCars();
+  carsContainer.innerHTML = data.slice(0, 6).map((car) => {
+    const {
+      img_url: imgUrl,
+      model,
+      make,
+      _id: id,
+    } = car;
+    return `<div class="column">
       <img src="${imgUrl}" alt="${model}" class="image">
       <div class="title">
         <h2>${make}</h2>
@@ -28,16 +28,22 @@ const loadVehicles = async() => {
       </div>
     </div>
     `;
-
-    }).join('');
-    const button = document.querySelectorAll('.buttons');
-    button.forEach((car) => {
-        car.onclick = () => {
-
-            displayCommentPopup(data.map(item => ({...item, id: item._id })).find((item) => item._id === car.id))
-            displayComment(car.id)
+  }).join('');
+  const button = document.querySelectorAll('.buttons');
+  button.forEach((car) => {
+    car.onclick = () => {
+      const carItem = data.find((iCar) => {
+        const { _id: id } = iCar;
+        iCar.id = id;
+        if (id === car.id) {
+          return iCar;
         }
-    });
+        return null;
+      });
+      displayCommentPopup(carItem);
+      displayComment(car.id);
+    };
+  });
 
   const likesCount = document.querySelectorAll('.likes-count');
   const allLikes = await likes.getAll();
@@ -60,7 +66,6 @@ const loadVehicles = async() => {
       likeCountContainer.innerHTML = `${likeCount} ${likeCount === 1 ? 'Like' : 'Likes'}`;
     });
   });
-
 };
 
 export default loadVehicles;

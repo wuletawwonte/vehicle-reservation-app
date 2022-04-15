@@ -1,9 +1,8 @@
-import { createComment } from './comments.js'
+import { createComment } from './comments.js';
 
 const modalContainer = document.getElementById('popup-container');
 const displayCommentPopup = (data) => {
-    modalContainer.innerHTML =
-        `
+  modalContainer.innerHTML = `
    <div id="modal">
      <img src="${data.img_url}" alt="" class="img"/>
      <div class="details">
@@ -33,10 +32,8 @@ const displayCommentPopup = (data) => {
    </div>
   </div>
    `;
-    const form1 = document.querySelector(".comment-button");
-    form1.addEventListener('click', createComment);
+  const form1 = document.querySelector('.comment-button');
+  form1.addEventListener('click', createComment);
 };
-
-
 
 export default displayCommentPopup;
