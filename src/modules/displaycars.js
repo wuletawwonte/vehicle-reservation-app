@@ -1,6 +1,7 @@
 import Likes from '../likes/likes.js';
 import Cars from './cars.js';
 import displayCommentPopup from '../comments/commentPopup.js';
+import { displayComment } from '../comments/comments.js';
 
 const carsContainer = document.getElementById('popup-container');
 const carsCount = document.getElementById('vehicle-count');
@@ -11,26 +12,39 @@ const loadVehicles = async () => {
   const data = await cars.getAll();
   carsContainer.innerHTML = data.slice(0, 6).map((car) => {
     const {
-      img_url: imgUrl, model, make, _id: id,
+      img_url: imgUrl,
+      model,
+      make,
+      _id: id,
     } = car;
-    return `<div class="v-item">
-      <img src="${imgUrl}" alt="${model}">
-      <div>
+    return `<div class="column">
+      <img src="${imgUrl}" alt="${model}" class="image">
+      <div class="title">
         <h2>${make}</h2>
         <button type="button" class="btn like-btn" data-car-id="${id}">Like</button> 
         <p class="likes-count" data-car-id="${id}" id=${id}></p>
       </div>
-      <div>
+      <div class="btn">
         <button type="button" class="buttons" id = "${id}">Comments</button>
-        <button type="button">Reservations</button>
+        <button type="button" class="button" id = "${id}">Reservations</button>
       </div>
     </div>
     `;
   }).join('');
-
   const button = document.querySelectorAll('.buttons');
   button.forEach((car) => {
-    car.onclick = () => displayCommentPopup(data.find((d) => d.id.toString() === car.id));
+    car.onclick = () => {
+      const carItem = data.find((iCar) => {
+        const { _id: id } = iCar;
+        iCar.id = id;
+        if (id === car.id) {
+          return iCar;
+        }
+        return null;
+      });
+      displayCommentPopup(carItem);
+      displayComment(car.id);
+    };
   });
 
   const likesCount = document.querySelectorAll('.likes-count');
