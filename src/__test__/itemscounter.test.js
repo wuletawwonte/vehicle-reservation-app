@@ -1,3 +1,4 @@
+import { expect } from '@jest/globals';
 import Cars from '../modules/cars.js';
 
 describe('total vehicles: ', () => {
