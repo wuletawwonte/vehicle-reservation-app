@@ -13,6 +13,21 @@ const renderComment = (comment) => `<li class="text-lg">
         <span class="text-slate-600 mx-2">${comment.username} : </span>
         <span>${comment.comment}</span>
       </li>`;
+const showComment = (data) => {
+  const CommentContainer = document.querySelector('.comment-container');
+  const commentCounterElement = document.querySelector('.comment-counter');
+  if (data.length > 0) {
+    commentCounterElement.textContent = `(${data.length})`;
+    let containerString = '';
+    data.forEach((dataItem) => {
+      containerString += `${renderComment(dataItem)} \n`;
+    });
+
+    CommentContainer.innerHTML = containerString;
+  } else {
+    CommentContainer.innerHTML = '';
+  }
+};
 const displayComment = (id) => {
   const api = new Api();
   let data = [];
@@ -20,23 +35,14 @@ const displayComment = (id) => {
     .getComment(undefined, id)
     .then((commentData) => {
       data = commentData;
-      const CommentContainer = document.querySelector('.comment-container');
-      if (data.length > 0) {
-        let containerString = '';
-        data.forEach((dataItem) => {
-          containerString += `${renderComment(dataItem)} \n`;
-        });
-
-        CommentContainer.innerHTML = containerString;
-      } else {
-        CommentContainer.innerHTML = '';
-      }
+      showComment(data);
     })
     .catch((commentData) => {
       data = commentData;
     });
 };
-const createComment = () => {
+const createComment = (e) => {
+  e.preventDefault();
   const api = new Api();
   const form = document.getElementById('comment-form');
   const comBtn = document.querySelector('.comment-button');
@@ -51,8 +57,8 @@ const createComment = () => {
   api
     .addComment(commentObj)
     .then(() => api.getComment(undefined, id))
-    .then(() => {
-      displayComment(id);
+    .then((data) => {
+      showComment(data);
     });
   form.reset();
 };
