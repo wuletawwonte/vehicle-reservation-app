@@ -6,7 +6,7 @@ class Likes {
 
   getAll = async () => {
     const response = await fetch(this.likesUrl);
-    const allLikes = response.json();
+    const allLikes = await response.json();
     return allLikes;
   };
 
@@ -23,7 +23,7 @@ class Likes {
     });
     const allLikes = await this.getAll();
     const { likes } = allLikes.find((item) => item.item_id === carId);
-    return likes;
+    return likes;  
   };
 }
 
