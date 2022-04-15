@@ -22,7 +22,7 @@ header {
   background-size: 50px;
   background-color: white;
   padding: 1px 0;
-  width: 100%;
+  max-width: 100vw;
 }
 
 .header {
@@ -82,7 +82,7 @@ li a {
   align-items: center;
   justify-content: center;
   align-self: flex-end;
-  background-color: var(--primary);
+  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2);
 }
 
 .title {
@@ -193,6 +193,14 @@ textarea {
   padding: 10px 20px;
   margin: 5px 0 0 0;
   width: 40%;
+}
+
+footer {
+  background-color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 30px;
 }
 
 @media screen and (min-width: 600px) {
