@@ -62,7 +62,7 @@ const loadVehicles = async () => {
 
   likeButtons.forEach((likeBtn) => {
     likeBtn.addEventListener('click', async (e) => {
-      const { carid } = e.target.dataset;      
+      const { carid } = e.target.dataset;
       const likeCount = await likes.like(carid);
       const likeCountContainer = document.getElementById(carid);
       likeCountContainer.innerHTML = `${likeCount} ${likeCount === 1 ? 'Like' : 'Likes'}`;
