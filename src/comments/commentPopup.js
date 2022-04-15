@@ -26,7 +26,7 @@ const displayCommentPopup = (data) => {
    </form>
    </div>
      <div class="comments">
-   <h2>Comments (<span class="comment-counter-header"></span>)</h2>
+   <h2>Comments <span class="comment-counter"></span></h2>
    <ul class="comment-container">
    </ul>
    </div>
