@@ -2,6 +2,8 @@ import Likes from '../likes/likes.js';
 import Cars from './cars.js';
 import displayCommentPopup from '../comments/commentPopup.js';
 import { displayComment } from '../comments/comments.js';
+import displayReservePopup from '../reservations/reservePopup.js';
+import { displayReserve } from '../reservations/reservations.js';
 
 const carsContainer = document.getElementById('popup-container');
 const carsCount = document.getElementById('vehicle-count');
@@ -46,7 +48,21 @@ const loadVehicles = async () => {
       displayComment(car.id);
     };
   });
-
+  const reserve = document.querySelectorAll('.button');
+  reserve.forEach((car) => {
+    car.onclick = () => {
+      const carItem = data.find((iCar) => {
+        const { _id: id } = iCar;
+        iCar.id = id;
+        if (id === car.id) {
+          return iCar;
+        }
+        return null;
+      });
+      displayReservePopup(carItem);
+      displayReserve(car.id);
+    };
+  });
   const likesCount = document.querySelectorAll('.likes-count');
   const allLikes = await likes.getAll();
   likesCount.forEach((item) => {

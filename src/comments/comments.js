@@ -16,16 +16,15 @@ const renderComment = (comment) => `<li class="text-lg">
 const showComment = (data) => {
   const CommentContainer = document.querySelector('.comment-container');
   const commentCounterElement = document.querySelector('.comment-counter');
+
   if (data.length > 0) {
-    commentCounterElement.textContent = `(${data.length})`;
+    commentCounterElement.innerHTML = `(${data.length})`;
     let containerString = '';
     data.forEach((dataItem) => {
       containerString += `${renderComment(dataItem)} \n`;
     });
 
     CommentContainer.innerHTML = containerString;
-  } else {
-    CommentContainer.innerHTML = '';
   }
 };
 const displayComment = (id) => {
@@ -62,4 +61,4 @@ const createComment = (e) => {
     });
   form.reset();
 };
-export { displayComment, createComment };
+export { displayComment, createComment, showComment };

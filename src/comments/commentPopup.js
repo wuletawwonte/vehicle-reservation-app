@@ -34,6 +34,14 @@ const displayCommentPopup = (data) => {
    `;
   const form1 = document.querySelector('.comment-button');
   form1.addEventListener('click', createComment);
+
+  const closeBtn = document.querySelector('.closeButton');
+  closeBtn.addEventListener('click', () => {
+    const modal = document.getElementById('modal');
+    modal.style.display = 'none';
+    window.onload();
+    modalContainer.style.display = 'block';
+  });
 };
 
 export default displayCommentPopup;
