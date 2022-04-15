@@ -6,7 +6,7 @@ class Likes {
 
   getAll = async () => {
     const response = await fetch(this.likesUrl);
-    const allLikes = response.json();
+    const allLikes = await response.json();
     return allLikes;
   };
 
