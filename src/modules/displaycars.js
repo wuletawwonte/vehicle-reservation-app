@@ -19,9 +19,9 @@ const loadVehicles = async () => {
     } = car;
     return `<div class="column">
       <img src="${imgUrl}" alt="${model}" class="image">
+      <button type="button" class="btn like-btn" data-car-id="${id}"><i class="fa fa-heart"></i></button> 
       <div class="title">
         <h2>${make}</h2>
-        <button type="button" class="btn like-btn" data-car-id="${id}">Like</button> 
         <p class="likes-count" data-car-id="${id}" id=${id}></p>
       </div>
       <div class="btn">
