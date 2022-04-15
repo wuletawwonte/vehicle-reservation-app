@@ -1,7 +1,7 @@
 import Likes from '../likes/likes.js';
 import getCars from './apicalls.js';
 import displayCommentPopup from '../comments/commentPopup.js';
-import createComment from '../comments/comments.js'
+import { displayComment } from '../comments/comments.js'
 
 const carsContainer = document.getElementById('popup-container');
 const likes = new Likes();
@@ -31,8 +31,11 @@ const loadVehicles = async() => {
     }).join('');
     const button = document.querySelectorAll('.buttons');
     button.forEach((car) => {
-        car.onclick = () => displayCommentPopup(car.id);
-        createComment(car.id)
+        car.onclick = () => {
+
+            displayCommentPopup(data.map(item => ({...item, id: item._id })).find((item) => item._id === car.id))
+            displayComment(car.id)
+        }
     });
 
     const likesCount = document.querySelectorAll('.likes-count');

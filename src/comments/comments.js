@@ -7,23 +7,25 @@ class CommentData {
         this.item_id = id;
     }
 }
+
 const renderComment = (comment) => `<li class="text-lg">
         <span>${comment.creation_date}</span> -
         <span class="text-slate-600 mx-2">${comment.username} : </span>
         <span>${comment.comment}</span>
       </li>`;
 const displayComment = (id) => {
+
     const api = new Api();
     let data = [];
     api
         .getComment(undefined, id)
         .then((commentData) => {
             data = commentData;
+            console.log(data);
             const CommentContainer = document.querySelector('.comment-container');
             if (data.length > 0) {
                 let containerString = '';
                 data.forEach((dataItem) => {
-                    console.log(dataItem)
                     containerString += `${renderComment(dataItem)} \n`;
                 });
 
@@ -41,7 +43,8 @@ const createComment = () => {
     const api = new Api();
     const form = document.getElementById('comment-form');
     const comBtn = document.querySelector('.comment-button');
-    const id = Number(comBtn.id.split('-')[2]);
+    console.log(comBtn.id);
+    const id = comBtn.id.split('-')[2];
     const usernameInput = document.querySelector('.input');
     const commentInput = document.querySelector('.comment');
 
@@ -57,4 +60,4 @@ const createComment = () => {
         });
     form.reset();
 }
-export default createComment;
+export { displayComment, createComment };
