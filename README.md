@@ -4,13 +4,17 @@
 
 Our goal here is to Build a Vehivle reservation application with add and remove feature from scratch using JavaScript. click [here](https://wuletawwonte.github.io/vehicle-reservation-app) to see deployed live version
 
-### Features implemented so far are:
+### Features implemented are:
 
 - Responsive HTML page
-- Add Vehicle information
 - List vehicle information
 - Comment on a vehicle information
-- Reserver a vehicle 
+- Like a vehicle
+- Reserve a vehicle 
+
+## Live server
+[Link to the live server](https://wuletawwonte.github.io/vehicle-reservation-app)
+![snapshothomepage](https://user-images.githubusercontent.com/12524453/163665480-51f00a1a-453e-4f6a-affe-814557a16df7.png)
 
 ## Built With
 
