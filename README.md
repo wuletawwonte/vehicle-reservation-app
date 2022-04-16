@@ -2,7 +2,7 @@
 
 > Vehicle Reservation application is a simple web application being built to track vehicle information and has the features listed below.
 
-Our goal here is to Build a Vehivle reservation application with add and remove feature from scratch using JavaScript. click [here](#) to see deployed live version
+Our goal here is to Build a Vehivle reservation application with add and remove feature from scratch using JavaScript. click [here](https://wuletawwonte.github.io/vehicle-reservation-app) to see deployed live version
 
 ### Features implemented so far are:
 
