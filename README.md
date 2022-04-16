@@ -42,6 +42,12 @@ The basic requirements for building the executable are:
 git clone https://github.com/wuletawwonte/vehicle-reservation-app.git <Your-Build-Directory>
 ```
 
+#### Install webpack and jest packages
+
+```
+npm install
+```
+
 ## Getting packages and debuging with Stylelint
 
 ```
